@@ -1,0 +1,16 @@
+[2026-07-04 10:19:37] EMAIL FAILED for order ASG_2_5_1783153137: mail() returned false. Check SMTP configuration in php.ini.
+[2026-07-04 10:19:37] PAYMENT SUCCESS: order=ASG_2_5_1783153137, billcode=4qitxu77, txn=TP2607043161034994, amount=10.00, receipt=receipts/receipt_ASG_2_5_1783153137.html, email_sent=no
+[2026-07-04 13:29:55] EMAIL FAILED for order ASG_2_3_1783164569: mail() returned false. Check SMTP configuration in php.ini.
+[2026-07-04 13:29:55] PAYMENT SUCCESS: order=ASG_2_3_1783164569, billcode=3fu183zr, txn=TP2607044590597454, amount=10.00, receipt=receipts/receipt_ASG_2_3_1783164569.html, email_sent=no
+[2026-07-04 13:35:31] EMAIL FAILED for order ASG_2_2_1783164882: mail() returned false. Check SMTP configuration in php.ini.
+[2026-07-04 13:35:31] PAYMENT SUCCESS: order=ASG_2_2_1783164882, billcode=zjrh2azr, txn=TP2607040677633464, amount=10.00, receipt=receipts/receipt_ASG_2_2_1783164882.html, email_sent=no
+[2026-07-05 04:43:20] EMAIL FAILED for order ASG_8_9_1783219371: mail() returned false. Check SMTP configuration in php.ini.
+[2026-07-05 04:43:20] PAYMENT SUCCESS: order=ASG_8_9_1783219371, billcode=9yotzfvl, txn=TP2607054575389037, amount=5.00, receipt=receipts/receipt_ASG_8_9_1783219371.html, email_sent=no
+[2026-07-08 11:42:31] EMAIL FAILED for order ASG_9_16_1783503722: mail() returned false. Check SMTP configuration in php.ini.
+[2026-07-08 11:42:31] PAYMENT SUCCESS: order=ASG_9_16_1783503722, billcode=c57o7qhx, txn=TP2607080314032599, amount=10.00, receipt=receipts/receipt_ASG_9_16_1783503722.html, email_sent=no
+[2026-07-08 12:14:41] EMAIL FAILED for order ASG_9_15_1783505654: mail() returned false. Check SMTP configuration in php.ini.
+[2026-07-08 12:14:41] PAYMENT SUCCESS: order=ASG_9_15_1783505654, billcode=tp5qunrw, txn=TP2607083747083203, amount=10.00, receipt=receipts/receipt_ASG_9_15_1783505654.html, email_sent=no
+[2026-07-09 01:10:37] EMAIL FAILED for order ASG_9_19_1783573751: mail() returned false. Check SMTP configuration in php.ini.
+[2026-07-09 01:10:37] PAYMENT SUCCESS: order=ASG_9_19_1783573751, billcode=1xsiac0z, txn=TP2607091430647924, amount=5.00, receipt=receipts/receipt_ASG_9_19_1783573751.html, email_sent=no
+[2026-07-10 09:07:00] EMAIL FAILED for order ASG_9_21_1783688743: mail() returned false. Check SMTP configuration in php.ini.
+[2026-07-10 09:07:00] PAYMENT SUCCESS: order=ASG_9_21_1783688743, billcode=aictim89, txn=TP2607100345352935, amount=5.00, receipt=receipts/receipt_ASG_9_21_1783688743.html, email_sent=no
