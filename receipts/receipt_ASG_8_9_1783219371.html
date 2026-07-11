@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receipt - RCP-20260705-985414</title>
+<style>
+    @page { size: A4; margin: 15mm; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #1f2937; background: #f3f4f6;
+        padding: 30px 20px;
+        line-height: 1.5;
+    }
+    .receipt-wrap {
+        max-width: 780px; margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+    .receipt-header {
+        background: linear-gradient(135deg, #5b21b6, #7c3aed, #a78bfa);
+        padding: 36px 40px;
+        color: #ffffff;
+    }
+    .receipt-header .rh-top {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 24px;
+    }
+    .receipt-header .rh-brand {
+        display: flex; align-items: center; gap: 14px;
+    }
+    .receipt-header .rh-logo {
+        width: 50px; height: 50px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 14px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem;
+    }
+    .receipt-header .rh-name { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; }
+    .receipt-header .rh-tagline { font-size: 0.78rem; opacity: 0.8; margin-top: 2px; }
+    .receipt-header .rh-badge {
+        padding: 6px 18px; border-radius: 50px;
+        background: rgba(255,255,255,0.2);
+        font-size: 0.75rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .receipt-header h2 {
+        font-size: 1.6rem; font-weight: 800; margin-bottom: 4px;
+    }
+    .receipt-header .rh-number {
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem; opacity: 0.85; letter-spacing: 0.05em;
+    }
+    .receipt-body { padding: 36px 40px; }
+    .rb-section { margin-bottom: 28px; }
+    .rb-section-title {
+        font-size: 0.72rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.1em;
+        color: #9ca3af; margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #f3f4f6;
+    }
+    .rb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .rb-grid-item { padding: 8px 0; }
+    .rb-grid-item .label { font-size: 0.78rem; color: #9ca3af; margin-bottom: 2px; }
+    .rb-grid-item .value { font-size: 0.9rem; font-weight: 600; color: #1f2937; }
+    .rb-item-card {
+        display: flex; align-items: flex-start; gap: 16px;
+        background: #f9fafb; border: 1px solid #f3f4f6;
+        border-radius: 10px; padding: 16px 20px;
+    }
+    .rb-item-icon {
+        width: 48px; height: 48px; min-width: 48px;
+        background: linear-gradient(135deg, #7c3aed, #a78bfa);
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 1.1rem;
+    }
+    .rb-item-info h4 { font-size: 0.95rem; font-weight: 700; color: #1f2937; margin-bottom: 2px; }
+    .rb-item-info p { font-size: 0.8rem; color: #6b7280; }
+    .rb-item-info .type-tag {
+        display: inline-block; margin-top: 6px;
+        padding: 2px 10px; border-radius: 50px;
+        background: #ede9fe; color: #7c3aed;
+        font-size: 0.7rem; font-weight: 600;
+        text-transform: capitalize;
+    }
+    .rb-amounts {
+        background: #f9fafb; border: 1px solid #f3f4f6;
+        border-radius: 10px; padding: 20px 24px;
+    }
+    .rb-amounts table { width: 100%; border-collapse: collapse; }
+    .rb-amounts table td { padding: 8px 0; font-size: 0.88rem; }
+    .rb-amounts-divider { height: 1px; background: #e5e7eb; margin: 8px 0; }
+    .rb-amounts-total td { padding: 12px 0 4px !important; }
+    .rb-amounts-total .total-label { font-size: 0.95rem; font-weight: 700; color: #374151; }
+    .rb-amounts-total .total-value {
+        font-family: "Segoe UI", sans-serif;
+        font-size: 1.5rem; font-weight: 800; color: #5b21b6;
+    }
+    .rb-footer {
+        text-align: center; padding-top: 20px;
+        border-top: 2px dashed #e5e7eb; margin-top: 8px;
+    }
+    .rb-footer p { font-size: 0.78rem; color: #9ca3af; }
+    .rb-footer .footer-brand { font-weight: 700; color: #6b7280; }
+    .no-print {
+        text-align: center; margin-top: 24px;
+        display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .no-print button {
+        padding: 12px 28px; border-radius: 10px; border: none;
+        font-weight: 700; font-size: 0.88rem; cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .no-print .btn-print {
+        background: #5b21b6; color: #fff;
+    }
+    .no-print .btn-print:hover { background: #4c1d95; transform: translateY(-1px); }
+    .no-print .btn-download {
+        background: #f3f4f6; color: #374151; border: 1px solid #e5e7eb !important;
+    }
+    .no-print .btn-download:hover { background: #e5e7eb; }
+    @media print {
+        body { background: #fff; padding: 0; }
+        .receipt-wrap { box-shadow: none; border-radius: 0; }
+        .no-print { display: none !important; }
+    }
+    @media (max-width: 600px) {
+        body { padding: 10px; }
+        .receipt-header { padding: 24px 20px; }
+        .receipt-body { padding: 24px 20px; }
+        .rb-grid { grid-template-columns: 1fr; }
+        .receipt-header .rh-top { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="receipt-wrap">
+    <!-- Header -->
+    <div class="receipt-header">
+        <div class="rh-top">
+            <div class="rh-brand">
+                <div class="rh-logo">&#x1f6e1;&#xFE0F;</div>
+                <div>
+                    <div class="rh-name">AI Checker</div>
+                    <div class="rh-tagline">Intelligent Assignment Analysis</div>
+                </div>
+            </div>
+            <div class="rh-badge">&#x2713; Paid</div>
+        </div>
+        <h2>Payment Receipt</h2>
+        <div class="rh-number">RCP-20260705-985414</div>
+    </div>
+
+    <!-- Body -->
+    <div class="receipt-body">
+
+        <!-- Payment Details -->
+        <div class="rb-section">
+            <div class="rb-section-title">Payment Details</div>
+            <div class="rb-grid">
+                <div class="rb-grid-item">
+                    <div class="label">Date</div>
+                    <div class="value">05 July 2026</div>
+                </div>
+                <div class="rb-grid-item">
+                    <div class="label">Time</div>
+                    <div class="value">04:43 AM</div>
+                </div>
+                <div class="rb-grid-item">
+                    <div class="label">Payment Method</div>
+                    <div class="value">ToyyibPay</div>
+                </div>
+                <div class="rb-grid-item">
+                    <div class="label">Order ID</div>
+                    <div class="value" style="font-family:monospace;font-size:0.82rem;">ASG_8_9_1783219371</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="rb-section">
+            <div class="rb-section-title">Customer Information</div>
+            <div class="rb-grid">
+                <div class="rb-grid-item">
+                    <div class="label">Name</div>
+                    <div class="value">Atikah Zanal</div>
+                </div>
+                <div class="rb-grid-item">
+                    <div class="label">Email</div>
+                    <div class="value">nuratikahmohdzanalabidin@gmail.com</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Purchased -->
+        <div class="rb-section">
+            <div class="rb-section-title">Item Purchased</div>
+            <div class="rb-item-card">
+                <div class="rb-item-icon">&#x128196;</div>
+                <div class="rb-item-info">
+                    <h4>LCC402</h4>
+                    <p>Assignment check — English</p>
+                    <span class="type-tag">assignment Check</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amount Breakdown -->
+        <div class="rb-section">
+            <div class="rb-section-title">Amount Breakdown</div>
+            <div class="rb-amounts">
+                <table>
+                    <tr>
+                        <td style="padding:10px 0;color:#6b7280;font-size:0.85rem;width:40%;">Original Amount</td>
+                        <td style="padding:10px 0;text-align:right;font-weight:600;font-size:0.85rem;">RM 10.00</td>
+                    </tr>
+                    
+            <tr>
+                <td style="padding:10px 0;color:#6b7280;font-size:0.85rem;width:40%;">Discount</td>
+                <td style="padding:10px 0;text-align:right;font-weight:600;font-size:0.85rem;color:#059669;">− RM 5.00</td>
+            </tr>
+                    
+                </table>
+                <div class="rb-amounts-divider"></div>
+                <table>
+                    <tr class="rb-amounts-total">
+                        <td class="total-label">Total Paid</td>
+                        <td class="total-value" style="text-align:right;">RM 5.00</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Transaction Info -->
+        <div class="rb-section">
+            <div class="rb-section-title">Transaction Information</div>
+            <div class="rb-grid">
+                <div class="rb-grid-item">
+                    <div class="label">Transaction ID</div>
+                    <div class="value" style="font-family:monospace;font-size:0.82rem;word-break:break-all;">TP2607054575389037</div>
+                </div>
+                <div class="rb-grid-item">
+                    <div class="label">Bill Code</div>
+                    <div class="value" style="font-family:monospace;font-size:0.82rem;">9yotzfvl</div>
+                </div>
+                <div class="rb-grid-item">
+                    <div class="label">Payment Status</div>
+                    <div class="value" style="color:#059669;">Paid</div>
+                </div>
+                <div class="rb-grid-item">
+                    <div class="label">Receipt Number</div>
+                    <div class="value" style="font-family:monospace;font-size:0.82rem;">RCP-20260705-985414</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="rb-footer">
+            <p>Thank you for using our <span class="footer-brand">AI Assignment Checker System</span>.</p>
+            <p style="margin-top:4px;">This receipt was auto-generated on 05 July 2026 at 04:43 AM.</p>
+            <p style="margin-top:8px;font-size:0.7rem;color:#d1d5db;">This is a system-generated receipt. No signature is required.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Print & Download Buttons (hidden when printing) -->
+<div class="no-print">
+    <button class="btn-print" onclick="window.print()">&#x1f5a8; Print Receipt</button>
+    <button class="btn-download" onclick="downloadReceipt()">&#x2b07; Download</button>
+</div>
+
+<script>
+function downloadReceipt() {
+    var content = document.querySelector(".receipt-wrap").outerHTML;
+    var html = "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>Receipt - RCP-20260705-985414</title>" +
+        document.querySelector("style").outerHTML +
+        "</head><body>" + content + "</body></html>";
+    var blob = new Blob([html], {type: "text/html"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "RCP-20260705-985414.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
